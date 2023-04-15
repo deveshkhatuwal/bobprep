@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "181643335442",
+    "project_id": "bobprep-digital-university",
+    "storage_bucket": "bobprep-digital-university.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181643335442:android:de35554d1366bf75a445cb",
+        "android_client_info": {
+          "package_name": "com.bobprepglobaldigital.university"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181643335442-jao0k6hoimo3na8hbt2tivciue7f2bga.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bobprepglobaldigital.university",
+            "certificate_hash": "73391841f2d1405d51e8c78444925f155f80319d"
+          }
+        },
+        {
+          "client_id": "181643335442-pqb3f1nfpm7h3db90hhb25i71dfcge2u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALgd8wtHBHwb-u9ZIZxC-MkW2ut4Yf7-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181643335442-pqb3f1nfpm7h3db90hhb25i71dfcge2u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
