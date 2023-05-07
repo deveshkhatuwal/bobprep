@@ -97,36 +97,36 @@ class RegisterPage extends GetView<DashboardController> {
               SizedBox(
                 height: 15,
               ),
-              Container(
-                padding: EdgeInsets.only(left: 30, right: 30),
-                child: TextField(
-                  controller: controller.registerPhone,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(
-                        left: 15, top: 13, bottom: 0, right: 15),
-                    filled: true,
-                    fillColor: Get.theme.canvasColor,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: BorderSide(
-                          color: Color.fromRGBO(142, 153, 183, 0.4),
-                          width: 1.0),
-                    ),
-                    hintText: "${stctrl.lang["Phone"]}",
-                    hintStyle: Get.textTheme.subtitle1.copyWith(
-                      fontSize: 14,
-                    ),
-                    suffixIcon: Icon(
-                      Icons.phone,
-                      size: 24,
-                      color: Color.fromRGBO(142, 153, 183, 0.5),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
+              // Container(
+              //   padding: EdgeInsets.only(left: 30, right: 30),
+              //   child: TextField(
+              //     controller: controller.registerPhone,
+              //     decoration: InputDecoration(
+              //       contentPadding: EdgeInsets.only(
+              //           left: 15, top: 13, bottom: 0, right: 15),
+              //       filled: true,
+              //       fillColor: Get.theme.canvasColor,
+              //       enabledBorder: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(5),
+              //         borderSide: BorderSide(
+              //             color: Color.fromRGBO(142, 153, 183, 0.4),
+              //             width: 1.0),
+              //       ),
+              //       hintText: "${stctrl.lang["Phone"]}",
+              //       hintStyle: Get.textTheme.subtitle1.copyWith(
+              //         fontSize: 14,
+              //       ),
+              //       suffixIcon: Icon(
+              //         Icons.phone,
+              //         size: 24,
+              //         color: Color.fromRGBO(142, 153, 183, 0.5),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 15,
+              // ),
               Container(
                 padding: EdgeInsets.only(left: 30, right: 30),
                 child: TextField(

@@ -73,6 +73,21 @@ class RemoteServices {
       //show error message
       return null;
     }
+  }  static Future<List<CourseMain>> fetchpopularCatdemo() async {
+    Uri topCatUrl = Uri.parse(baseUrl + '/get-popular-courses');
+    var response = await http.get(topCatUrl, headers: header());
+
+    if (response.statusCode == 200) {
+      var jsonString = jsonDecode(response.body);
+      var courseData = jsonEncode(jsonString['data']);
+      return List<CourseMain>.from(
+              json.decode(courseData).map((x) => CourseMain.fromJson(x)))
+          .where((element) => element.price == 0 || element.status == "0")
+          .toList();
+    } else {
+      //show error message
+      return null;
+    }
   }
 
   // network call for All course list

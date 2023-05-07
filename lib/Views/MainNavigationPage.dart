@@ -144,13 +144,13 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   List<Widget> _screens(controller) {
     if (Platform.isIOS) {
       return [
-        HomePage(),
+        controller.loggedIn.value ? HomePage() : SignInPage(),
         controller.loggedIn.value ? CourseAndClass() : SignInPage(),
         controller.loggedIn.value ? HomePage() : SignInPage(),
       ];
     }
     return [
-      HomePage(),
+      controller.loggedIn.value ? HomePage() : SignInPage(),
       controller.loggedIn.value ? CartPage() : SignInPage(),
       controller.loggedIn.value ? CourseAndClass() : SignInPage(),
       controller.loggedIn.value ? HomePage() : SignInPage(),

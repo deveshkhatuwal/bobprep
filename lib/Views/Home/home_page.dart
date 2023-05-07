@@ -234,9 +234,9 @@ class HomePage extends GetView<HomeController> {
                       else {
                         return Container(
                           height: 200,
-                          child: ListView.separated(
+                          child:ListView.separated(
                               scrollDirection: Axis.horizontal,
-                              itemCount: controller.popularCourseList.length,
+                              itemCount: controller.popularCourseListDemo.length,
                               separatorBuilder: (context, index) {
                                 return SizedBox(
                                   width: 18,
@@ -248,52 +248,152 @@ class HomePage extends GetView<HomeController> {
                                   Get.locale == Locale('ar') ? 5 : 0,
                                   0),
                               physics: BouncingScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return SingleItemCardWidget(
-                                  showPricing: true,
-                                  image:
-                                      "$rootUrl/${controller.popularCourseList[index].image}",
-                                  title: controller.popularCourseList[index]
-                                          .title['${stctrl.code.value}'] ??
-                                      "${controller.popularCourseList[index].title['en']}",
-                                  subTitle: controller
-                                      .popularCourseList[index].user.name,
-                                  price:
-                                      controller.popularCourseList[index].price,
-                                  discountPrice: controller
-                                      .popularCourseList[index].discountPrice,
-                                  onTap: () async {
-                                    context.loaderOverlay.show();
-                                    controller.selectedLessonID.value = 0;
-                                    controller.courseID.value =
-                                        controller.popularCourseList[index].id;
-                                    await controller.getCourseDetails();
 
-                                    if (controller.isCourseBought.value) {
-                                      final MyCourseController
+                              itemBuilder: (BuildContext context, int index) {
+                                if(stctrl.dashboardController.profileData.email == "bobprep@gmail.com"){
+
+                                    return SingleItemCardWidget(
+                                      showPricing: true,
+                                      image:"$rootUrl/${controller.popularCourseListDemo[index].image}",
+                                      title: controller.popularCourseListDemo[index]
+                                          .title['${stctrl.code.value}'] ??
+                                          "${controller.popularCourseListDemo[index].title['en']}",
+                                      subTitle: controller
+                                          .popularCourseListDemo[index].user.name,
+                                      price:
+                                      controller.popularCourseListDemo[index].price,
+                                      discountPrice: controller
+                                          .popularCourseListDemo[index].discountPrice,
+                                      onTap: () async {
+                                        // context.loaderOverlay.show();
+                                        controller.selectedLessonID.value = 0;
+                                        controller.courseID.value =
+                                            controller.popularCourseListDemo[index].id;
+                                        await controller.getCourseDetails();
+
+                                        if (controller.isCourseBought.value) {
+                                          final MyCourseController
                                           myCoursesController =
                                           Get.put(MyCourseController());
 
-                                      myCoursesController.courseID.value =
-                                          controller
-                                              .popularCourseList[index].id;
-                                      myCoursesController
-                                          .selectedLessonID.value = 0;
-                                      myCoursesController
-                                          .myCourseDetailsTabController
-                                          .controller
-                                          .index = 0;
+                                          myCoursesController.courseID.value =
+                                              controller
+                                                  .popularCourseListDemo[index].id;
+                                          myCoursesController
+                                              .selectedLessonID.value = 0;
+                                          myCoursesController
+                                              .myCourseDetailsTabController
+                                              .controller
+                                              .index = 0;
 
-                                      await myCoursesController
-                                          .getCourseDetails();
-                                      Get.to(() => MyCourseDetailsView());
-                                      context.loaderOverlay.hide();
-                                    } else {
-                                      Get.to(() => CourseDetailsPage());
-                                      context.loaderOverlay.hide();
-                                    }
-                                  },
-                                );
+                                          await myCoursesController
+                                              .getCourseDetails();
+                                          Get.to(() => MyCourseDetailsView());
+                                          context.loaderOverlay.hide();
+                                        } else {
+                                          Get.to(() => CourseDetailsPage());
+                                          context.loaderOverlay.hide();
+                                        }
+                                      },
+                                    );
+                                // }else if (stctrl.dashboardController.profileData.email == null){
+                                //   return SingleItemCardWidget(
+                                //     showPricing: true,
+                                //     image:"$rootUrl/${controller.popularCourseListDemo[index].image}",
+                                //     title: controller.popularCourseListDemo[index]
+                                //         .title['${stctrl.code.value}'] ??
+                                //         "${controller.popularCourseListDemo[index].title['en']}",
+                                //     subTitle: controller
+                                //         .popularCourseListDemo[index].user.name,
+                                //     price:
+                                //     controller.popularCourseListDemo[index].price,
+                                //     discountPrice: controller
+                                //         .popularCourseListDemo[index].discountPrice,
+                                //     onTap: () async {
+                                //       context.loaderOverlay.show();
+                                //       controller.selectedLessonID.value = 0;
+                                //       controller.courseID.value =
+                                //           controller.popularCourseList[index].id;
+                                //       await controller.getCourseDetails();
+                                //
+                                //       if (controller.isCourseBought.value) {
+                                //         final MyCourseController
+                                //         myCoursesController =
+                                //         Get.put(MyCourseController());
+                                //
+                                //         myCoursesController.courseID.value =
+                                //             controller
+                                //                 .popularCourseList[index].id;
+                                //         myCoursesController
+                                //             .selectedLessonID.value = 0;
+                                //         myCoursesController
+                                //             .myCourseDetailsTabController
+                                //             .controller
+                                //             .index = 0;
+                                //
+                                //         await myCoursesController
+                                //             .getCourseDetails();
+                                //         Get.to(() => MyCourseDetailsView());
+                                //         context.loaderOverlay.hide();
+                                //       } else {
+                                //         Get.to(() => CourseDetailsPage());
+                                //         context.loaderOverlay.hide();
+                                //       }
+                                //     },
+                                //   );
+                                }
+                                else return SingleItemCardWidget(
+                                    showPricing: true,
+                                    image:"$rootUrl/${controller.popularCourseList[index].image}",
+                                    title: controller.popularCourseList[index]
+                                        .title['${stctrl.code.value}'] ??
+                                        "${controller.popularCourseList[index].title['en']}",
+                                    subTitle: controller
+                                        .popularCourseList[index].user.name,
+                                    price:
+                                    controller.popularCourseList[index].price,
+                                    discountPrice: controller
+                                        .popularCourseList[index].discountPrice,
+                                    onTap: () async {
+                                      // context.loaderOverlay.show();
+                                      controller.selectedLessonID.value = 0;
+                                      controller.courseID.value =
+                                          controller.popularCourseList[index].id;
+                                      await controller.getCourseDetails();
+
+                                      if (controller.isCourseBought.value) {
+                                        final MyCourseController
+                                        myCoursesController =
+                                        Get.put(MyCourseController());
+
+                                        myCoursesController.courseID.value =
+                                            controller
+                                                .popularCourseList[index].id;
+                                        myCoursesController
+                                            .selectedLessonID.value = 0;
+                                        myCoursesController
+                                            .myCourseDetailsTabController
+                                            .controller
+                                            .index = 0;
+
+                                        await myCoursesController
+                                            .getCourseDetails();
+                                        Get.to(() => MyCourseDetailsView());
+                                        context.loaderOverlay.hide();
+                                      } else {
+                                        Get.to(() => CourseDetailsPage());
+                                        context.loaderOverlay.hide();
+                                      }
+                                    },
+                                  );
+                                print(controller.popularCourseList[index].price);
+
+
+
+
+
+
+
                               }),
                         );
                       }
@@ -354,22 +454,40 @@ class HomePage extends GetView<HomeController> {
                                 return SingleItemCardWidget(
                                   showPricing: true,
                                   image:
-                                      "$rootUrl/${controller.allClassesList[index].image}",
-                                  title: controller.allClassesList[index]
-                                          .title['${stctrl.code.value}'] ??
-                                      "${controller.allClassesList[index].title['en']}",
+                                  "$rootUrl/${controller
+                                      .allClassesList[index]
+                                      .image}",
+                                  title: controller
+                                      .allClassesList[index]
+                                      .title['${stctrl
+                                      .code
+                                      .value}'] ??
+                                      "${controller
+                                          .allClassesList[index]
+                                          .title['en']}",
                                   subTitle: controller
-                                      .allClassesList[index].user.name,
-                                  price: controller.allClassesList[index].price,
+                                      .allClassesList[index]
+                                      .user.name,
+                                  price: controller
+                                      .allClassesList[index]
+                                      .price,
                                   discountPrice: controller
-                                      .allClassesList[index].discountPrice,
+                                      .allClassesList[index]
+                                      .discountPrice,
                                   onTap: () async {
                                     final ClassController allCourseController =
-                                        Get.put(ClassController());
-                                    allCourseController.courseID.value =
-                                        controller.allClassesList[index].id;
-                                    allCourseController.getClassDetails();
-                                    Get.to(() => ClassDetailsPage());
+                                    Get.put(
+                                        ClassController());
+                                    allCourseController
+                                        .courseID
+                                        .value =
+                                        controller
+                                            .allClassesList[index]
+                                            .id;
+                                    allCourseController
+                                        .getClassDetails();
+                                    Get.to(() =>
+                                        ClassDetailsPage());
                                   },
                                 );
                               }),
@@ -379,93 +497,94 @@ class HomePage extends GetView<HomeController> {
                   ),
 
                   /// FEATURED QUIZZES
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: Get.locale == Locale('ar') ? 12 : 20,
-                      bottom: 14.72,
-                      right: Get.locale == Locale('ar') ? 20 : 12,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Texth1("${stctrl.lang["Featured Quizzes"]}"),
-                        Expanded(
-                          child: Container(),
-                        ),
-                        GestureDetector(
-                          child: sellAllText(),
-                          onTap: () {
-                            Get.to(() => AllQuizView());
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(
-                        Get.locale == Locale('ar') ? 0 : 15,
-                        0,
-                        Get.locale == Locale('ar') ? 15 : 0,
-                        0),
-                    child: Obx(() {
-                      if (controller.isLoading.value)
-                        return LoadingSkeletonItemWidget();
-                      else {
-                        return Container(
-                          height: 200,
-                          child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: controller.allQuizzesList.length,
-                              separatorBuilder: (context, index) {
-                                return SizedBox(
-                                  width: 18,
-                                );
-                              },
-                              padding: EdgeInsets.fromLTRB(
-                                  Get.locale == Locale('ar') ? 0 : 5,
-                                  0,
-                                  Get.locale == Locale('ar') ? 5 : 0,
-                                  0),
-                              physics: BouncingScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return SingleItemCardWidget(
-                                  showPricing: true,
-                                  image:
-                                      "$rootUrl/${controller.allQuizzesList[index].image}",
-                                  title: controller.allQuizzesList[index]
-                                          .title['${stctrl.code.value}'] ??
-                                      "${controller.allQuizzesList[index].title['en']}",
-                                  subTitle: controller
-                                      .allQuizzesList[index].user.name,
-                                  price: controller.allQuizzesList[index].price,
-                                  discountPrice: controller
-                                      .allQuizzesList[index].discountPrice,
-                                  onTap: () async {
-                                    context.loaderOverlay.show();
-                                    final QuizController allQuizController =
-                                        Get.put(QuizController());
-                                    allQuizController.courseID.value =
-                                        controller.allQuizzesList[index].id;
-
-                                    await allQuizController.getQuizDetails();
-
-                                    if (allQuizController.isQuizBought.value) {
-                                      await allQuizController
-                                          .getMyQuizDetails();
-                                      Get.to(() => MyQuizDetailsPageView());
-                                      context.loaderOverlay.hide();
-                                    } else {
-                                      Get.to(() => QuizDetailsPageView());
-                                      context.loaderOverlay.hide();
-                                    }
-                                  },
-                                );
-                              }),
-                        );
-                      }
-                    }),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.only(
+                  //     left: Get.locale == Locale('ar') ? 12 : 20,
+                  //     bottom: 14.72,
+                  //     right: Get.locale == Locale('ar') ? 20 : 12,
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     children: [
+                  //       Texth1("${stctrl.lang["Featured Quizzes"]}"),
+                  //       Expanded(
+                  //         child: Container(),
+                  //       ),
+                  //       GestureDetector(
+                  //         child: sellAllText(),
+                  //         onTap: () {
+                  //           Get.to(() => AllQuizView());
+                  //         },
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                  // Container(
+                  //   margin: EdgeInsets.fromLTRB(
+                  //       Get.locale == Locale('ar') ? 0 : 15,
+                  //       0,
+                  //       Get.locale == Locale('ar') ? 15 : 0,
+                  //       0),
+                  //   child: Obx(() {
+                  //     if (controller.isLoading.value)
+                  //       return LoadingSkeletonItemWidget();
+                  //     else {
+                  //       print(stctrl.dashboardController.profileData.email);
+                  //       return Container(
+                  //         height: 200,
+                  //         child: ListView.separated(
+                  //             scrollDirection: Axis.horizontal,
+                  //             itemCount: controller.allQuizzesList.length,
+                  //             separatorBuilder: (context, index) {
+                  //               return SizedBox(
+                  //                 width: 18,
+                  //               );
+                  //             },
+                  //             padding: EdgeInsets.fromLTRB(
+                  //                 Get.locale == Locale('ar') ? 0 : 5,
+                  //                 0,
+                  //                 Get.locale == Locale('ar') ? 5 : 0,
+                  //                 0),
+                  //             physics: BouncingScrollPhysics(),
+                  //             itemBuilder: (BuildContext context, int index) {
+                  //               return SingleItemCardWidget(
+                  //                 showPricing: false,
+                  //                 image:
+                  //                     "$rootUrl/${controller.allQuizzesList[index].image}",
+                  //                 title: controller.allQuizzesList[index]
+                  //                         .title['${stctrl.code.value}'] ??
+                  //                     "${controller.allQuizzesList[index].title['en']}",
+                  //                 subTitle: controller
+                  //                     .allQuizzesList[index].user.name,
+                  //                 price: controller.allQuizzesList[index].price,
+                  //                 discountPrice: controller
+                  //                     .allQuizzesList[index].discountPrice,
+                  //                 onTap: () async {
+                  //                   context.loaderOverlay.show();
+                  //                   final QuizController allQuizController =
+                  //                       Get.put(QuizController());
+                  //                   allQuizController.courseID.value =
+                  //                       controller.allQuizzesList[index].id;
+                  //
+                  //                   await allQuizController.getQuizDetails();
+                  //
+                  //                   if (allQuizController.isQuizBought.value) {
+                  //                     await allQuizController
+                  //                         .getMyQuizDetails();
+                  //                     Get.to(() => MyQuizDetailsPageView());
+                  //                     context.loaderOverlay.hide();
+                  //                   } else {
+                  //                     Get.to(() => QuizDetailsPageView());
+                  //                     context.loaderOverlay.hide();
+                  //                   }
+                  //                 },
+                  //               );
+                  //             }),
+                  //       );
+                  //     }
+                  //   }),
+                  // ),
 
                   //**  POPULAR COURSES
                   Container(
@@ -555,13 +674,229 @@ class HomePage extends GetView<HomeController> {
                               );
                             });
                       else {
+
                         return ListView.builder(
                             scrollDirection: Axis.vertical,
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: controller.popularCourseList.length,
+                            itemCount: controller.popularCourseListDemo.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return GestureDetector(
+                              if (stctrl.dashboardController.profileData.email == "bobprep@gmail.com") {
+                                return GestureDetector(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Get.theme.cardColor,
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Get.theme.shadowColor,
+                                          blurRadius: 10.0,
+                                          offset: Offset(2, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    margin: EdgeInsets.fromLTRB(0, 5.8, 0, 5.8),
+                                    child: Row(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            child: OctoImage(
+                                              image: NetworkImage(
+                                                  "$rootUrl/${controller.popularCourseListDemo[index].image}"),
+                                              placeholderBuilder:
+                                              OctoPlaceholder.blurHash(
+                                                'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                                              ),
+                                              errorBuilder: (BuildContext context,
+                                                  Object exception,
+                                                  StackTrace stackTrace) {
+                                                return Image.asset(
+                                                  'images/fcimg.png',
+                                                  fit: BoxFit.cover,
+                                                  width: 88,
+                                                  height: 78,
+                                                );
+                                              },
+                                              fit: BoxFit.cover,
+                                              width: 88,
+                                              height: 78,
+                                            ),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          child: Container(
+                                            width: 220,
+                                            margin: EdgeInsets.only(
+                                                left: 16, right: 16),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                PopularPostTitle(controller
+                                                    .popularCourseListDemo[index]
+                                                    .title[
+                                                '${stctrl.code.value}'] ??
+                                                    "${controller.popularCourseListDemo[index].title['en']}"),
+                                                SizedBox(
+                                                  height: 2,
+                                                ),
+                                                courseTPublisher(controller
+                                                    .popularCourseListDemo[index]
+                                                    .user
+                                                    .name)
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  onTap: () async {
+                                    print(controller.popularCourseListDemo[index].id);
+                                    context.loaderOverlay.show();
+                                    controller.courseID.value =
+                                        controller.popularCourseListDemo[index].id;
+                                    await controller.getCourseDetails();
+
+                                    if (controller.isCourseBought.value) {
+                                      final MyCourseController
+                                      myCoursesController =
+                                      Get.put(MyCourseController());
+
+                                      myCoursesController.courseID.value =
+                                          controller.popularCourseListDemo[index].id;
+                                      myCoursesController.selectedLessonID.value =
+                                      0;
+                                      myCoursesController
+                                          .myCourseDetailsTabController
+                                          .controller
+                                          .index = 0;
+
+                                      await myCoursesController
+                                          .getCourseDetails();
+                                      Get.to(() => MyCourseDetailsView());
+                                      context.loaderOverlay.hide();
+                                    } else {
+                                      Get.to(() => CourseDetailsPage());
+                                      context.loaderOverlay.hide();
+                                    }
+                                  },
+                                );
+                                
+                              }
+                              // else if( stctrl.dashboardController.profileData.email == null) {
+                              //   return GestureDetector(
+                              //     child: Container(
+                              //       decoration: BoxDecoration(
+                              //         color: Get.theme.cardColor,
+                              //         borderRadius: BorderRadius.circular(5.0),
+                              //         boxShadow: [
+                              //           BoxShadow(
+                              //             color: Get.theme.shadowColor,
+                              //             blurRadius: 10.0,
+                              //             offset: Offset(2, 3),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //       margin: EdgeInsets.fromLTRB(0, 5.8, 0, 5.8),
+                              //       child: Row(
+                              //         children: [
+                              //           ClipRRect(
+                              //             borderRadius: BorderRadius.all(
+                              //                 Radius.circular(5)),
+                              //             child: Container(
+                              //               alignment: Alignment.center,
+                              //               child: OctoImage(
+                              //                 image: NetworkImage(
+                              //                     "$rootUrl/${controller.popularCourseListDemo[index].image}"),
+                              //                 placeholderBuilder:
+                              //                 OctoPlaceholder.blurHash(
+                              //                   'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                              //                 ),
+                              //                 errorBuilder: (BuildContext context,
+                              //                     Object exception,
+                              //                     StackTrace stackTrace) {
+                              //                   return Image.asset(
+                              //                     'images/fcimg.png',
+                              //                     fit: BoxFit.cover,
+                              //                     width: 88,
+                              //                     height: 78,
+                              //                   );
+                              //                 },
+                              //                 fit: BoxFit.cover,
+                              //                 width: 88,
+                              //                 height: 78,
+                              //               ),
+                              //             ),
+                              //           ),
+                              //           Flexible(
+                              //             child: Container(
+                              //               width: 220,
+                              //               margin: EdgeInsets.only(
+                              //                   left: 16, right: 16),
+                              //               child: Column(
+                              //                 mainAxisAlignment:
+                              //                 MainAxisAlignment.start,
+                              //                 crossAxisAlignment:
+                              //                 CrossAxisAlignment.start,
+                              //                 children: [
+                              //                   PopularPostTitle(controller
+                              //                       .popularCourseListDemo[index]
+                              //                       .title[
+                              //                   '${stctrl.code.value}'] ??
+                              //                       "${controller.popularCourseListDemo[index].title['en']}"),
+                              //                   SizedBox(
+                              //                     height: 2,
+                              //                   ),
+                              //                   courseTPublisher(controller
+                              //                       .popularCourseListDemo[index]
+                              //                       .user
+                              //                       .name)
+                              //                 ],
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ),
+                              //     onTap: () async {
+                              //       print(controller.popularCourseListDemo[index].id);
+                              //       context.loaderOverlay.show();
+                              //       controller.courseID.value =
+                              //           controller.popularCourseListDemo[index].id;
+                              //       await controller.getCourseDetails();
+                              //
+                              //       if (controller.isCourseBought.value) {
+                              //         final MyCourseController
+                              //         myCoursesController =
+                              //         Get.put(MyCourseController());
+                              //
+                              //         myCoursesController.courseID.value =
+                              //             controller.popularCourseListDemo[index].id;
+                              //         myCoursesController.selectedLessonID.value =
+                              //         0;
+                              //         myCoursesController
+                              //             .myCourseDetailsTabController
+                              //             .controller
+                              //             .index = 0;
+                              //
+                              //         await myCoursesController
+                              //             .getCourseDetails();
+                              //         Get.to(() => MyCourseDetailsView());
+                              //         context.loaderOverlay.hide();
+                              //       } else {
+                              //         Get.to(() => CourseDetailsPage());
+                              //         context.loaderOverlay.hide();
+                              //       }
+                              //     },
+                              //   );
+                              // }
+                             else return GestureDetector(
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Get.theme.cardColor,
@@ -586,7 +921,7 @@ class HomePage extends GetView<HomeController> {
                                             image: NetworkImage(
                                                 "$rootUrl/${controller.popularCourseList[index].image}"),
                                             placeholderBuilder:
-                                                OctoPlaceholder.blurHash(
+                                            OctoPlaceholder.blurHash(
                                               'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
                                             ),
                                             errorBuilder: (BuildContext context,
@@ -612,14 +947,14 @@ class HomePage extends GetView<HomeController> {
                                               left: 16, right: 16),
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               PopularPostTitle(controller
-                                                          .popularCourseList[index]
-                                                          .title[
-                                                      '${stctrl.code.value}'] ??
+                                                  .popularCourseList[index]
+                                                  .title[
+                                              '${stctrl.code.value}'] ??
                                                   "${controller.popularCourseList[index].title['en']}"),
                                               SizedBox(
                                                 height: 2,
@@ -643,13 +978,13 @@ class HomePage extends GetView<HomeController> {
 
                                   if (controller.isCourseBought.value) {
                                     final MyCourseController
-                                        myCoursesController =
-                                        Get.put(MyCourseController());
+                                    myCoursesController =
+                                    Get.put(MyCourseController());
 
                                     myCoursesController.courseID.value =
                                         controller.popularCourseList[index].id;
                                     myCoursesController.selectedLessonID.value =
-                                        0;
+                                    0;
                                     myCoursesController
                                         .myCourseDetailsTabController
                                         .controller

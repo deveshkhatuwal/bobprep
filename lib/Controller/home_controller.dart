@@ -34,6 +34,7 @@ class HomeController extends GetxController {
   RxList<TopCategory> topCatList = <TopCategory>[].obs;
 
   var popularCourseList = [].obs;
+  var popularCourseListDemo = [].obs;
 
   var allClassesList = [].obs;
 
@@ -70,6 +71,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchTopCat();
+    fetchPopularCoursedemo();
     fetchPopularCourse();
     fetchAllClass();
     fetchAllCourse();
@@ -96,6 +98,17 @@ class HomeController extends GetxController {
       var products = await RemoteServices.fetchpopularCat();
       if (products != null) {
         popularCourseList.value = products;
+      }
+    } finally {
+      isLoading(false);
+    }
+  }
+  void fetchPopularCoursedemo() async {
+    try {
+      isLoading(true);
+      var products = await RemoteServices.fetchpopularCatdemo();
+      if (products != null) {
+        popularCourseListDemo.value = products;
       }
     } finally {
       isLoading(false);

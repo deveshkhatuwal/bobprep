@@ -231,147 +231,147 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 5,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Get.textTheme.subtitle1.color, width: 1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                        child: DropdownButton(
-                          elevation: 1,
-                          isExpanded: true,
-                          underline: Container(),
-                          items: controller.countryList.map((item) {
-                            return DropdownMenuItem(
-                              value: item,
-                              child: Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text(item.name)),
-                            );
-                          }).toList(),
-                          onChanged: (value) async {
-                            controller.selectedCountry.value = value;
-
-                            await controller
-                                .getStates(controller.selectedCountry.value.id)
-                                .then((stValue) async {
-                              controller.selectedState.value = stValue.first;
-
-                              await controller
-                                  .getCities(controller.selectedState.value.id)
-                                  .then((ctValue) {
-                                controller.selectedCity.value = ctValue.first;
-                              });
-                            });
-                          },
-                          value: controller.selectedCountry.value,
-                        ),
-                      ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(
+                      //         color: Get.textTheme.subtitle1.color, width: 1),
+                      //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                      //   ),
+                      //   padding:
+                      //       EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                      //   child: DropdownButton(
+                      //     elevation: 1,
+                      //     isExpanded: true,
+                      //     underline: Container(),
+                      //     items: controller.countryList.map((item) {
+                      //       return DropdownMenuItem(
+                      //         value: item,
+                      //         child: Padding(
+                      //             padding: const EdgeInsets.only(left: 8.0),
+                      //             child: Text(item.name)),
+                      //       );
+                      //     }).toList(),
+                      //     onChanged: (value) async {
+                      //       controller.selectedCountry.value = value;
+                      //
+                      //       await controller
+                      //           .getStates(controller.selectedCountry.value.id)
+                      //           .then((stValue) async {
+                      //         controller.selectedState.value = stValue.first;
+                      //
+                      //         await controller
+                      //             .getCities(controller.selectedState.value.id)
+                      //             .then((ctValue) {
+                      //           controller.selectedCity.value = ctValue.first;
+                      //         });
+                      //       });
+                      //     },
+                      //     value: controller.selectedCountry.value,
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "${stctrl.lang["State"]}",
-                        style: Get.textTheme.subtitle1,
-                      ),
+                      // Text(
+                      //   "${stctrl.lang["State"]}",
+                      //   style: Get.textTheme.subtitle1,
+                      // ),
                       SizedBox(
                         height: 5,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Get.textTheme.subtitle1.color, width: 1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                        child: DropdownButton(
-                          elevation: 1,
-                          isExpanded: true,
-                          underline: Container(),
-                          items: controller.stateList.map((item) {
-                            return DropdownMenuItem(
-                              value: item,
-                              child: Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text(item.name)),
-                            );
-                          }).toList(),
-                          onChanged: (value) async {
-                            controller.selectedState.value = value;
-
-                            await controller
-                                .getCities(controller.selectedState.value.id)
-                                .then((ctValue) {
-                              controller.selectedCity.value = ctValue.first;
-                            });
-                          },
-                          value: controller.selectedState.value,
-                        ),
-                      ),
-                      controller.cityList.length == 0
-                          ? SizedBox.shrink()
-                          : Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  "${stctrl.lang["City"]}",
-                                  style: Get.textTheme.subtitle1,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                              ],
-                            ),
-                      controller.cityList.length == 0
-                          ? SizedBox.shrink()
-                          : Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Get.textTheme.subtitle1.color,
-                                    width: 1),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 5),
-                              child: DropdownButton(
-                                elevation: 1,
-                                isExpanded: true,
-                                underline: Container(),
-                                items: controller.cityList.map((item) {
-                                  return DropdownMenuItem(
-                                    value: item,
-                                    child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
-                                        child: Text(item.name)),
-                                  );
-                                }).toList(),
-                                onChanged: (value) async {
-                                  controller.selectedCity.value = value;
-                                },
-                                value: controller.selectedCity.value,
-                              ),
-                            ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CustomTextField(
-                        hintText: "${stctrl.lang["Zip Code"]}",
-                        obscrureText: false,
-                        suffixWidget: Icon(
-                          Icons.location_city,
-                          size: icon_size,
-                          color: Color.fromRGBO(142, 153, 183, 0.498),
-                        ),
-                        textEditingController: controller.ctZipCode,
-                      ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(
+                      //         color: Get.textTheme.subtitle1.color, width: 1),
+                      //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                      //   ),
+                      //   padding:
+                      //       EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                      //   child: DropdownButton(
+                      //     elevation: 1,
+                      //     isExpanded: true,
+                      //     underline: Container(),
+                      //     items: controller.stateList.map((item) {
+                      //       return DropdownMenuItem(
+                      //         value: item,
+                      //         child: Padding(
+                      //             padding: const EdgeInsets.only(left: 8.0),
+                      //             child: Text(item.name)),
+                      //       );
+                      //     }).toList(),
+                      //     onChanged: (value) async {
+                      //       controller.selectedState.value = value;
+                      //
+                      //       await controller
+                      //           .getCities(controller.selectedState.value.id)
+                      //           .then((ctValue) {
+                      //         controller.selectedCity.value = ctValue.first;
+                      //       });
+                      //     },
+                      //     value: controller.selectedState.value,
+                      //   ),
+                      // ),
+                      // controller.cityList.length == 0
+                      //     ? SizedBox.shrink()
+                      //     : Column(
+                      //         crossAxisAlignment: CrossAxisAlignment.start,
+                      //         children: [
+                      //           SizedBox(
+                      //             height: 20,
+                      //           ),
+                      //           Text(
+                      //             "${stctrl.lang["City"]}",
+                      //             style: Get.textTheme.subtitle1,
+                      //           ),
+                      //           SizedBox(
+                      //             height: 5,
+                      //           ),
+                      //         ],
+                      //       ),
+                      // controller.cityList.length == 0
+                      //     ? SizedBox.shrink()
+                      //     : Container(
+                      //         decoration: BoxDecoration(
+                      //           border: Border.all(
+                      //               color: Get.textTheme.subtitle1.color,
+                      //               width: 1),
+                      //           borderRadius:
+                      //               BorderRadius.all(Radius.circular(10)),
+                      //         ),
+                      //         padding: EdgeInsets.symmetric(
+                      //             vertical: 5, horizontal: 5),
+                      //         child: DropdownButton(
+                      //           elevation: 1,
+                      //           isExpanded: true,
+                      //           underline: Container(),
+                      //           items: controller.cityList.map((item) {
+                      //             return DropdownMenuItem(
+                      //               value: item,
+                      //               child: Padding(
+                      //                   padding:
+                      //                       const EdgeInsets.only(left: 8.0),
+                      //                   child: Text(item.name)),
+                      //             );
+                      //           }).toList(),
+                      //           onChanged: (value) async {
+                      //             controller.selectedCity.value = value;
+                      //           },
+                      //           value: controller.selectedCity.value,
+                      //         ),
+                      //       ),
+                      // SizedBox(
+                      //   height: 20,
+                      // ),
+                      // CustomTextField(
+                      //   hintText: "${stctrl.lang["Zip Code"]}",
+                      //   obscrureText: false,
+                      //   suffixWidget: Icon(
+                      //     Icons.location_city,
+                      //     size: icon_size,
+                      //     color: Color.fromRGBO(142, 153, 183, 0.498),
+                      //   ),
+                      //   textEditingController: controller.ctZipCode,
+                      // ),
                       Center(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

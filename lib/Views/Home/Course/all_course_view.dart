@@ -136,140 +136,283 @@ class _AllCourseViewState extends State<AllCourseView> {
                             child: CupertinoActivityIndicator(),
                           );
                         else {
-                          return allCourseSearch.length == 0
-                              ? Container(
-                                  child: GridView.builder(
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 10.0,
-                                        mainAxisSpacing: 10.0,
-                                        mainAxisExtent: 220,
-                                      ),
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemCount:
-                                          _homeController.allCourse.length,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return SingleItemCardWidget(
-                                          showPricing: true,
-                                          image:
-                                              "$rootUrl/${_homeController.allCourse[index].image}",
-                                          title: _homeController
-                                                      .allCourse[index].title[
-                                                  '${stctrl.code.value}'] ??
-                                              "${_homeController.allCourse[index].title['en']}",
-                                          subTitle: _homeController
-                                              .allCourse[index].user.name,
-                                          price: _homeController
-                                              .allCourse[index].price,
-                                          discountPrice: _homeController
-                                              .allCourse[index].discountPrice,
-                                          onTap: () async {
-                                            context.loaderOverlay.show();
+                  if (stctrl.dashboardController.profileData.email == "bobprep@gmail.com") {
+                    return allCourseSearch.length == 0
+                        ? Container(
+                      child: GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            mainAxisExtent: 220,
+                          ),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount:
+                          _homeController.popularCourseListDemo.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder:
+                              (BuildContext context, int index) {
 
-                                            _homeController.courseID.value =
-                                                _homeController
-                                                    .allCourse[index].id;
-                                            await _homeController
-                                                .getCourseDetails();
 
-                                            if (_homeController
-                                                .isCourseBought.value) {
-                                              final MyCourseController
-                                                  myCoursesController =
-                                                  Get.put(MyCourseController());
+                              return SingleItemCardWidget(
+                                showPricing: true,
+                                image:
+                                "$rootUrl/${_homeController.popularCourseListDemo[index].image}",
+                                title: _homeController
+                                    .popularCourseListDemo[index].title[
+                                '${stctrl.code.value}'] ??
+                                    "${_homeController.popularCourseListDemo[index].title['en']}",
+                                subTitle: _homeController
+                                    .popularCourseListDemo[index].user.name,
+                                price: _homeController
+                                    .popularCourseListDemo[index].price,
+                                discountPrice: _homeController
+                                    .popularCourseListDemo[index].discountPrice,
+                                onTap: () async {
+                                  context.loaderOverlay.show();
 
-                                              myCoursesController
-                                                      .courseID.value =
-                                                  _homeController
-                                                      .allCourse[index].id;
-                                              myCoursesController
-                                                  .selectedLessonID.value = 0;
-                                              myCoursesController
-                                                  .myCourseDetailsTabController
-                                                  .controller
-                                                  .index = 0;
+                                  _homeController.courseID.value =
+                                      _homeController
+                                          .popularCourseListDemo[index].id;
+                                  await _homeController
+                                      .getCourseDetails();
 
-                                              await myCoursesController
-                                                  .getCourseDetails();
-                                              Get.to(
-                                                  () => MyCourseDetailsView());
-                                              context.loaderOverlay.hide();
-                                            } else {
-                                              Get.to(() => CourseDetailsPage());
-                                              context.loaderOverlay.hide();
-                                            }
-                                          },
-                                        );
-                                      }),
-                                )
-                              : Container(
-                                  child: GridView.builder(
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 10.0,
-                                        mainAxisSpacing: 10.0,
-                                        mainAxisExtent: 220,
-                                      ),
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemCount: allCourseSearch.length,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return SingleItemCardWidget(
-                                          showPricing: true,
-                                          image:
-                                              "$rootUrl/${allCourseSearch[index].image}",
-                                          title: allCourseSearch[index].title[
-                                                  '${stctrl.code.value}'] ??
-                                              "${allCourseSearch[index].title['en']}",
-                                          subTitle:
-                                              allCourseSearch[index].user.name,
-                                          price: allCourseSearch[index].price,
-                                          discountPrice: allCourseSearch[index]
-                                              .discountPrice,
-                                          onTap: () async {
-                                            context.loaderOverlay.show();
+                                  if (_homeController
+                                      .isCourseBought.value) {
+                                    final MyCourseController
+                                    myCoursesController =
+                                    Get.put(MyCourseController());
 
-                                            _homeController.courseID.value =
-                                                allCourseSearch[index].id;
-                                            await _homeController
-                                                .getCourseDetails();
+                                    myCoursesController
+                                        .courseID.value =
+                                        _homeController
+                                            .allCourse[index].id;
+                                    myCoursesController
+                                        .selectedLessonID.value = 0;
+                                    myCoursesController
+                                        .myCourseDetailsTabController
+                                        .controller
+                                        .index = 0;
 
-                                            if (_homeController
-                                                .isCourseBought.value) {
-                                              final MyCourseController
-                                                  myCoursesController =
-                                                  Get.put(MyCourseController());
+                                    await myCoursesController
+                                        .getCourseDetails();
+                                    Get.to(
+                                            () => MyCourseDetailsView());
+                                    context.loaderOverlay.hide();
+                                  } else {
+                                    Get.to(() => CourseDetailsPage());
+                                    context.loaderOverlay.hide();
+                                  }
+                                },
+                              );
 
-                                              myCoursesController
-                                                      .courseID.value =
-                                                  allCourseSearch[index].id;
-                                              myCoursesController
-                                                  .selectedLessonID.value = 0;
-                                              myCoursesController
-                                                  .myCourseDetailsTabController
-                                                  .controller
-                                                  .index = 0;
+                          }),
+                    )
+                        : Container(
+                      child: GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            mainAxisExtent: 220,
+                          ),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: allCourseSearch.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder:
+                              (BuildContext context, int index) {
+                            return SingleItemCardWidget(
+                              showPricing: true,
+                              image:
+                              "$rootUrl/${allCourseSearch[index].image}",
+                              title: allCourseSearch[index].title[
+                              '${stctrl.code.value}'] ??
+                                  "${allCourseSearch[index].title['en']}",
+                              subTitle:
+                              allCourseSearch[index].user.name,
+                              price: allCourseSearch[index].price,
+                              discountPrice: allCourseSearch[index]
+                                  .discountPrice,
+                              onTap: () async {
+                                context.loaderOverlay.show();
 
-                                              await myCoursesController
-                                                  .getCourseDetails();
-                                              Get.to(
-                                                  () => MyCourseDetailsView());
-                                              context.loaderOverlay.hide();
-                                            } else {
-                                              Get.to(() => CourseDetailsPage());
-                                              context.loaderOverlay.hide();
-                                            }
-                                          },
-                                        );
-                                      }),
-                                );
+                                _homeController.courseID.value =
+                                    allCourseSearch[index].id;
+                                await _homeController
+                                    .getCourseDetails();
+
+                                if (_homeController
+                                    .isCourseBought.value) {
+                                  final MyCourseController
+                                  myCoursesController =
+                                  Get.put(MyCourseController());
+
+                                  myCoursesController
+                                      .courseID.value =
+                                      allCourseSearch[index].id;
+                                  myCoursesController
+                                      .selectedLessonID.value = 0;
+                                  myCoursesController
+                                      .myCourseDetailsTabController
+                                      .controller
+                                      .index = 0;
+
+                                  await myCoursesController
+                                      .getCourseDetails();
+                                  Get.to(
+                                          () => MyCourseDetailsView());
+                                  context.loaderOverlay.hide();
+                                } else {
+                                  Get.to(() => CourseDetailsPage());
+                                  context.loaderOverlay.hide();
+                                }
+                              },
+                            );
+                          }),
+                    );
+                  } else {
+                    return allCourseSearch.length == 0
+                        ? Container(
+                      child: GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            mainAxisExtent: 220,
+                          ),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount:
+                          _homeController.allCourse.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder:
+                              (BuildContext context, int index) {
+
+
+
+                              return SingleItemCardWidget(
+                                showPricing: true,
+                                image:
+                                "$rootUrl/${_homeController.allCourse[index].image}",
+                                title: _homeController
+                                    .allCourse[index].title[
+                                '${stctrl.code.value}'] ??
+                                    "${_homeController.allCourse[index].title['en']}",
+                                subTitle: _homeController
+                                    .allCourse[index].user.name,
+                                price: _homeController
+                                    .allCourse[index].price,
+                                discountPrice: _homeController
+                                    .allCourse[index].discountPrice,
+                                onTap: () async {
+                                  context.loaderOverlay.show();
+
+                                  _homeController.courseID.value =
+                                      _homeController
+                                          .allCourse[index].id;
+                                  await _homeController
+                                      .getCourseDetails();
+
+                                  if (_homeController
+                                      .isCourseBought.value) {
+                                    final MyCourseController
+                                    myCoursesController =
+                                    Get.put(MyCourseController());
+
+                                    myCoursesController
+                                        .courseID.value =
+                                        _homeController
+                                            .allCourse[index].id;
+                                    myCoursesController
+                                        .selectedLessonID.value = 0;
+                                    myCoursesController
+                                        .myCourseDetailsTabController
+                                        .controller
+                                        .index = 0;
+
+                                    await myCoursesController
+                                        .getCourseDetails();
+                                    Get.to(
+                                            () => MyCourseDetailsView());
+                                    context.loaderOverlay.hide();
+                                  } else {
+                                    Get.to(() => CourseDetailsPage());
+                                    context.loaderOverlay.hide();
+                                  }
+                                },
+                              );
+                          }),
+                    )
+                        : Container(
+                      child: GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            mainAxisExtent: 220,
+                          ),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: allCourseSearch.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder:
+                              (BuildContext context, int index) {
+                            return SingleItemCardWidget(
+                              showPricing: true,
+                              image:
+                              "$rootUrl/${allCourseSearch[index].image}",
+                              title: allCourseSearch[index].title[
+                              '${stctrl.code.value}'] ??
+                                  "${allCourseSearch[index].title['en']}",
+                              subTitle:
+                              allCourseSearch[index].user.name,
+                              price: allCourseSearch[index].price,
+                              discountPrice: allCourseSearch[index]
+                                  .discountPrice,
+                              onTap: () async {
+                                context.loaderOverlay.show();
+
+                                _homeController.courseID.value =
+                                    allCourseSearch[index].id;
+                                await _homeController
+                                    .getCourseDetails();
+
+                                if (_homeController
+                                    .isCourseBought.value) {
+                                  final MyCourseController
+                                  myCoursesController =
+                                  Get.put(MyCourseController());
+
+                                  myCoursesController
+                                      .courseID.value =
+                                      allCourseSearch[index].id;
+                                  myCoursesController
+                                      .selectedLessonID.value = 0;
+                                  myCoursesController
+                                      .myCourseDetailsTabController
+                                      .controller
+                                      .index = 0;
+
+                                  await myCoursesController
+                                      .getCourseDetails();
+                                  Get.to(
+                                          () => MyCourseDetailsView());
+                                  context.loaderOverlay.hide();
+                                } else {
+                                  Get.to(() => CourseDetailsPage());
+                                  context.loaderOverlay.hide();
+                                }
+                              },
+                            );
+                          }),
+                    );
+                  }
                         }
                       })),
                 ],

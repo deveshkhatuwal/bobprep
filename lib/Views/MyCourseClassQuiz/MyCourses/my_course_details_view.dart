@@ -26,6 +26,7 @@ import 'package:lms_flutter_app/Controller/quiz_controller.dart';
 import 'package:lms_flutter_app/Model/Course/FileElement.dart';
 import 'package:lms_flutter_app/Service/permission_service.dart';
 import 'package:lms_flutter_app/Views/Downloads/DownloadsFolder.dart';
+import 'package:lms_flutter_app/Views/Home/home_page.dart';
 import 'package:lms_flutter_app/Views/MyCourseClassQuiz/MyQuiz/start_quiz_page.dart';
 import 'package:lms_flutter_app/Views/VideoView/PDFViewPage.dart';
 import 'package:lms_flutter_app/Views/VideoView/VideoChipherPage.dart';
@@ -47,6 +48,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vdocipher_flutter/vdocipher_flutter.dart';
 
 import '../../../utils/widgets/course_details_flexible_space_bar.dart';
+import '../../MainNavigationPage.dart';
 
 // ignore: must_be_immutable
 class MyCourseDetailsView extends StatefulWidget {
@@ -141,7 +143,11 @@ class _MyCourseDetailsViewState extends State<MyCourseDetailsView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         GestureDetector(
-                          onTap: () => Get.back(),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              )),
                           child: Icon(
                             Icons.arrow_back_outlined,
                             color: Get.textTheme.subtitle1.color,

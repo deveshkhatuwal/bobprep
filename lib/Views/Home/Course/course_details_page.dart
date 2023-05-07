@@ -46,6 +46,9 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vdocipher_flutter/vdocipher_flutter.dart';
 
+import '../../../Controller/myCourse_controller.dart';
+import '../../MyCourseClassQuiz/MyCourses/my_course_details_view.dart';
+
 // ignore: must_be_immutable
 class CourseDetailsPage extends StatefulWidget {
   @override
@@ -301,20 +304,61 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           ),
                           style: Get.theme.elevatedButtonTheme.style,
                           onPressed: () async {
-                            await controller
-                                .buyNow(controller.courseDetails.value.id)
-                                .then((value) async {
-                              if (value) {
-                                await Future.delayed(Duration(seconds: 5), () {
-                                  Get.back();
-                                  dashboardController
-                                      .changeTabIndex(Platform.isIOS ? 1 : 2);
-                                });
-                              }
-                            });
+                            controller.selectedLessonID.value = 0;
+                            controller.courseID.value =
+                                controller.courseDetails.value.id;
+                            await controller.getCourseDetails();
+
+                             controller
+                             .buyNow(controller.courseDetails.value.id);
+                              final MyCourseController
+
+                              myCoursesController =
+                              Get.put(MyCourseController());
+
+                              myCoursesController.courseID.value =
+                                  controller
+                                      .courseDetails.value.id;
+                              myCoursesController
+                                  .selectedLessonID.value = 0;
+                              myCoursesController
+                                  .myCourseDetailsTabController
+                                  .controller
+                                  .index = 0;
+
+                              myCoursesController
+                                  .getCourseDetails();
+                              Get.to(() => MyCourseDetailsView());
+                              // context.loaderOverlay.hide();
+
+                            // Get.back();
+                            // controller.isLoading.value = false;
+                            //  controller
+                            //     .buyNow(controller.courseDetails.value.id);
+                            // await Future.delayed(Duration(seconds: 1), () {
+                            //   // Get.back();
+                            //
+                            //   Get.back();
+                            //   dashboardController.changeTabIndex(Platform.isIOS ? 1 : 2);
+                            //
+                            // });
+
+                            // dashboardController
+                            //     .changeTabIndex(Platform.isIOS ? 1 : 2);
+                            // controller
+                            //     .buyNow(controller.courseDetails.value.id);
+                            //     .then((value) async {
+                            //   if (value) {
+                            //     await Future.delayed(Duration(seconds: 0), () {
+                            //       // Get.back();
+                            //       dashboardController
+                            //           .changeTabIndex(Platform.isIOS ? 1 : 2);
+                            //     });
+                            //   }
+                            // });
                           },
                         )
-                      : controller.cartAdded.value && !Platform.isIOS
+                      : controller.cartAdded.value
                           ? ElevatedButton(
                               child: Text(
                                 "${stctrl.lang["View On Cart"]}",
@@ -327,87 +371,99 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                 dashboardController.changeTabIndex(1);
                               },
                             )
-                          : ElevatedButton(
-                              child: AnimatedSwitcher(
-                                duration: Duration(milliseconds: 500),
-                                child: controller.isPurchasingIAP.value
-                                    ? CupertinoActivityIndicator(
-                                        color: Colors.white,
-                                      )
-                                    : Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            "${stctrl.lang["Enroll the Course"]}",
-                                            style: Get.textTheme.subtitle2
-                                                .copyWith(color: Colors.white),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            "${controller.courseDetails.value.discountPrice == null || controller.courseDetails.value.discountPrice == 0 ? controller.courseDetails.value.price.toString() : controller.courseDetails.value.discountPrice.toString()} $appCurrency",
-                                            style: context.textTheme.subtitle1
-                                                .copyWith(color: Colors.white),
-                                          ),
-                                        ],
-                                      ),
-                              ),
-                              onPressed: () async {
-                                if (Platform.isIOS) {
-                                  try {
-                                    print(
-                                        "IAP Product ID -> ${controller.courseDetails.value.iapProductId}");
-                                    controller.isPurchasingIAP.value = true;
-                                    CustomerInfo purchaserInfo =
-                                        await Purchases.purchaseProduct(
-                                            controller.courseDetails.value
-                                                .iapProductId);
-                                    print(jsonEncode(purchaserInfo.toJson()));
-
-                                    await controller
-                                        .enrollIAP(
-                                            controller.courseDetails.value.id)
-                                        .then((value) {
-                                      Get.back();
-                                      dashboardController.changeTabIndex(1);
-                                    });
-                                    controller.isPurchasingIAP.value = false;
-                                  } on PlatformException catch (e) {
-                                    var errorCode =
-                                        PurchasesErrorHelper.getErrorCode(e);
-                                    if (errorCode ==
-                                        PurchasesErrorCode
-                                            .purchaseCancelledError) {
-                                      print("Cancelled");
-                                      CustomSnackBar()
-                                          .snackBarWarning("Cancelled");
-                                    } else if (errorCode ==
-                                        PurchasesErrorCode
-                                            .purchaseNotAllowedError) {
-                                      CustomSnackBar().snackBarWarning(
-                                          "User not allowed to purchase");
-                                    } else if (errorCode ==
-                                        PurchasesErrorCode
-                                            .paymentPendingError) {
-                                      CustomSnackBar().snackBarWarning(
-                                          "Payment is pending");
-                                    } else {
-                                      print(e);
-                                    }
-                                    controller.isPurchasingIAP.value = false;
-                                  } catch (e) {
-                                    print(e);
-                                    controller.isPurchasingIAP.value = false;
-                                  }
-                                } else {
-                                  await controller.addToCart(controller
-                                      .courseDetails.value.id
-                                      .toString());
-                                }
-                              },
-                            )
+                          :ElevatedButton(
+            child: Text(
+              "${stctrl.lang["View On Cart"]}",
+              style: Get.textTheme.subtitle2
+                  .copyWith(color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () {
+              Get.back();
+              dashboardController.changeTabIndex(1);
+            },
+          )
+          // ElevatedButton(
+          //                     child: AnimatedSwitcher(
+          //                       duration: Duration(milliseconds: 500),
+          //                       child: controller.isPurchasingIAP.value
+          //                           ? CupertinoActivityIndicator(
+          //                               color: Colors.white,
+          //                             )
+          //                           : Row(
+          //                               mainAxisSize: MainAxisSize.min,
+          //                               children: [
+          //                                 Text(
+          //                                   "${stctrl.lang["Enroll the Course"]}",
+          //                                   style: Get.textTheme.subtitle2
+          //                                       .copyWith(color: Colors.white),
+          //                                   textAlign: TextAlign.center,
+          //                                 ),
+          //                                 SizedBox(
+          //                                   width: 5,
+          //                                 ),
+          //                                 Text(
+          //                                   "${controller.courseDetails.value.discountPrice == null || controller.courseDetails.value.discountPrice == 0 ? controller.courseDetails.value.price.toString() : controller.courseDetails.value.discountPrice.toString()} $appCurrency",
+          //                                   style: context.textTheme.subtitle1
+          //                                       .copyWith(color: Colors.white),
+          //                                 ),
+          //                               ],
+          //                             ),
+          //                     ),
+          //                     onPressed: () async {
+          //                       if (Platform.isIOS) {
+          //                         try {
+          //                           print(
+          //                               "IAP Product ID -> ${controller.courseDetails.value.iapProductId}");
+          //                           controller.isPurchasingIAP.value = true;
+          //                           CustomerInfo purchaserInfo =
+          //                               await Purchases.purchaseProduct(
+          //                                   controller.courseDetails.value
+          //                                       .iapProductId);
+          //                           print(jsonEncode(purchaserInfo.toJson()));
+          //
+          //                           await controller
+          //                               .enrollIAP(
+          //                                   controller.courseDetails.value.id)
+          //                               .then((value) {
+          //                             Get.back();
+          //                             dashboardController.changeTabIndex(1);
+          //                           });
+          //                           controller.isPurchasingIAP.value = false;
+          //                         } on PlatformException catch (e) {
+          //                           var errorCode =
+          //                               PurchasesErrorHelper.getErrorCode(e);
+          //                           if (errorCode ==
+          //                               PurchasesErrorCode
+          //                                   .purchaseCancelledError) {
+          //                             print("Cancelled");
+          //                             CustomSnackBar()
+          //                                 .snackBarWarning("Cancelled");
+          //                           } else if (errorCode ==
+          //                               PurchasesErrorCode
+          //                                   .purchaseNotAllowedError) {
+          //                             CustomSnackBar().snackBarWarning(
+          //                                 "User not allowed to purchase");
+          //                           } else if (errorCode ==
+          //                               PurchasesErrorCode
+          //                                   .paymentPendingError) {
+          //                             CustomSnackBar().snackBarWarning(
+          //                                 "Payment is pending");
+          //                           } else {
+          //                             print(e);
+          //                           }
+          //                           controller.isPurchasingIAP.value = false;
+          //                         } catch (e) {
+          //                           print(e);
+          //                           controller.isPurchasingIAP.value = false;
+          //                         }
+          //                       } else {
+          //                         await controller.addToCart(controller
+          //                             .courseDetails.value.id
+          //                             .toString());
+          //                       }
+          //                     },
+          //                   )
               : ElevatedButton(
                   onPressed: () {
                     Get.back();

@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>741175723531-vr0h086ofapij0qh8jbj2f6mp5sr6egq.apps.googleusercontent.com</string>
+	<string>181643335442-ph41admq5g0c5jvk81ove8mr46hc8klm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.741175723531-vr0h086ofapij0qh8jbj2f6mp5sr6egq</string>
+	<string>com.googleusercontent.apps.181643335442-ph41admq5g0c5jvk81ove8mr46hc8klm</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>741175723531-4ub24u96s5qfh9d83fs9gfjlp2alakuh.apps.googleusercontent.com</string>
+	<string>181643335442-jao0k6hoimo3na8hbt2tivciue7f2bga.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAiM6Qk9VcLoAhFiHwAzqmDL7ynMzPDSPQ</string>
+	<string>AIzaSyCrIMJkS7QWVOKxYqCUKex7iW6bRb0xmME</string>
 	<key>GCM_SENDER_ID</key>
-	<string>741175723531</string>
+	<string>181643335442</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.infixlms.app</string>
+	<string>com.bobprepglobaldigital.university</string>
 	<key>PROJECT_ID</key>
-	<string>infixlms-83998</string>
+	<string>bobprep-digital-university</string>
 	<key>STORAGE_BUCKET</key>
-	<string>infixlms-83998.appspot.com</string>
+	<string>bobprep-digital-university.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:741175723531:ios:bee565ffe4c3c108f5290e</string>
+	<string>1:181643335442:ios:a32f2657a09d4e54a445cb</string>
 </dict>
 </plist>
