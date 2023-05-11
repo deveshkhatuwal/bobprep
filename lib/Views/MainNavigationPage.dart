@@ -354,7 +354,7 @@ class CustomDrawer extends StatelessWidget {
                     })
                   ],
                 ),
-                GestureDetector(
+                stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? SizedBox():GestureDetector(
                   child: drawerListItem("images/icon_person.svg",
                       "${stctrl.lang["Edit Profile"]}"),
                   onTap: () {
@@ -367,7 +367,7 @@ class CustomDrawer extends StatelessWidget {
                         ));
                   },
                 ),
-                GestureDetector(
+                stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? SizedBox():GestureDetector(
                   child: drawerListItem("images/icon_key.svg",
                       "${stctrl.lang["Change Password"]}"),
                   onTap: () {
@@ -487,7 +487,8 @@ class CustomDrawer extends StatelessWidget {
                     ),
                   ),
                 ),
-                GestureDetector(
+
+                stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? SizedBox(): GestureDetector(
                   onTap: () {
                     Get.back();
                     Get.to(() => SettingsPage());

@@ -90,16 +90,16 @@ class _CourseAndClassState extends State<CourseAndClass> {
                                       'images/$appLogo',
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Container(),
-                                  ),
+                                  // Expanded(
+                                  //   child: Container(),
+                                  // ),
                                 ],
                               ),
                             ],
                           ),
                           Stack(
                             alignment: Alignment.centerRight,
-                            children: [
+                            children:stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? [] : [
                               Container(
                                 height: 50,
                                 decoration: BoxDecoration(

@@ -59,8 +59,8 @@ class HomePage extends GetView<HomeController> {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBarWidget(
-            showSearch: true,
-            goToSearch: true,
+            showSearch: false,
+            goToSearch: false,
             showBack: false,
             showFilterBtn: true,
           ),
@@ -75,14 +75,14 @@ class HomePage extends GetView<HomeController> {
                   ),
 
                   /// TOP CATEGORIES
-                  Container(
+                  Container(child: stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ?  SizedBox():Container(
                       margin: EdgeInsets.only(
                         left: 20,
                         bottom: 14.72,
                         right: 20,
                       ),
-                      child: Texth1("${stctrl.lang['Top Categories']}")),
-                  Container(
+                      child: Texth1("${stctrl.lang['Top Categories']}")),),
+                  Container(child: stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? SizedBox(): Container(
                       margin: EdgeInsets.fromLTRB(
                         Get.locale == Locale('ar') ? 0 : 20,
                         0,
@@ -110,9 +110,9 @@ class HomePage extends GetView<HomeController> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           SizedBox(
                                             height: 8,
@@ -154,31 +154,31 @@ class HomePage extends GetView<HomeController> {
                                       decoration: BoxDecoration(
                                           color: selectColor(indexCat),
                                           borderRadius:
-                                              BorderRadius.circular(5.0)),
+                                          BorderRadius.circular(5.0)),
                                       height: 200,
                                       width: 140,
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Container(
                                             margin: EdgeInsets.only(
                                                 left: 15, top: 18, right: 15),
                                             child: CatTitle(controller
-                                                        .topCatList[indexCat]
-                                                        .name[
-                                                    '${stctrl.code.value}'] ??
+                                                .topCatList[indexCat]
+                                                .name[
+                                            '${stctrl.code.value}'] ??
                                                 "${controller.topCatList[indexCat].name['en']}"),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(
                                                 left: 15, top: 5.3, right: 15),
                                             child: CatSubTitle(controller
-                                                    .topCatList[indexCat]
-                                                    .courseCount
-                                                    .toString() +
+                                                .topCatList[indexCat]
+                                                .courseCount
+                                                .toString() +
                                                 ' ' +
                                                 "${stctrl.lang["Courses"]}"),
                                           ),
@@ -188,7 +188,7 @@ class HomePage extends GetView<HomeController> {
                                     onTap: () {
                                       Get.to(() => CourseCategoryPage(
                                           controller.topCatList[indexCat].name[
-                                                  '${stctrl.code.value}'] ??
+                                          '${stctrl.code.value}'] ??
                                               "${controller.topCatList[indexCat].name['en']}",
                                           indexCat));
                                     },
@@ -196,7 +196,8 @@ class HomePage extends GetView<HomeController> {
                                 }),
                           );
                         }
-                      })),
+                      })),),
+
 
                   /// FEATURED COURSES
                   Container(
@@ -401,7 +402,7 @@ class HomePage extends GetView<HomeController> {
                   ),
 
                   /// FEATURED CLASSES
-                  Container(
+                  Container(child: stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ?    SizedBox(): Container(
                     margin: EdgeInsets.only(
                       left: Get.locale == Locale('ar') ? 12 : 20,
                       bottom: 14.72,
@@ -423,8 +424,7 @@ class HomePage extends GetView<HomeController> {
                         )
                       ],
                     ),
-                  ),
-                  Container(
+                  ),), Container(child: stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ?    SizedBox(): Container(
                     margin: EdgeInsets.fromLTRB(
                         Get.locale == Locale('ar') ? 0 : 15,
                         0,
@@ -494,7 +494,9 @@ class HomePage extends GetView<HomeController> {
                         );
                       }
                     }),
-                  ),
+                  ),),
+
+
 
                   /// FEATURED QUIZZES
                   // Container(

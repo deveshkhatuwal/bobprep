@@ -201,7 +201,7 @@ class _MyCourseDetailsViewState extends State<MyCourseDetailsView> {
                     children: <Widget>[
                       curriculumWidget(controller),
                       filesWidget(controller),
-                      questionsAnswerWidget(controller),
+                      // questionsAnswerWidget(controller),
                     ],
                   ),
                 )
@@ -839,211 +839,211 @@ class _MyCourseDetailsViewState extends State<MyCourseDetailsView> {
     );
   }
 
-  Widget questionsAnswerWidget(MyCourseController controller) {
-    return extend.ExtendedVisibilityDetector(
-      uniqueKey: const Key('Tab3'),
-      child: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.myCourseDetails.value.comments.length,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ClipOval(
-                              child: OctoImage(
-                                fit: BoxFit.cover,
-                                height: 40,
-                                width: 40,
-                                image: controller.myCourseDetails.value
-                                        .comments[index].user.image
-                                        .contains('public/')
-                                    ? NetworkImage(
-                                        '$rootUrl/${controller.myCourseDetails.value.comments[index].user.image}')
-                                    : NetworkImage(controller.myCourseDetails
-                                        .value.comments[index].user.image),
-                                placeholderBuilder: OctoPlaceholder.blurHash(
-                                  'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          controller.myCourseDetails.value
-                                              .comments[index].user.name
-                                              .toString(),
-                                          style: Get.textTheme.subtitle1,
-                                        ),
-                                        Expanded(child: Container()),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 4.0),
-                                          child: Text(
-                                            controller.myCourseDetails.value
-                                                .comments[index].commentDate
-                                                .toString(),
-                                            style: Get.textTheme.subtitle2,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 4.0),
-                                    child: Text(
-                                      controller.myCourseDetails.value
-                                          .comments[index].comment
-                                          .toString(),
-                                      style: Get.textTheme.subtitle2,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            )
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Container(
-          decoration: BoxDecoration(
-            color: Get.theme.cardColor,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                child: ClipOval(
-                  child: OctoImage(
-                    fit: BoxFit.cover,
-                    height: 40,
-                    width: 40,
-                    image: controller.dashboardController.profileData.image
-                            .contains('public')
-                        ? NetworkImage(
-                            '$rootUrl/${controller.dashboardController.profileData.image ?? ""}')
-                        : NetworkImage(
-                            '$rootUrl/${controller.dashboardController.profileData.image ?? ""}'),
-                    placeholderBuilder: OctoPlaceholder.blurHash(
-                      'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Container(
-                  width: percentageWidth * 50,
-                  constraints: BoxConstraints(maxHeight: percentageWidth * 15),
-                  decoration: BoxDecoration(
-                    color: Color(0xffF2F6FF),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  padding: EdgeInsets.zero,
-                  child: TextField(
-                    controller: controller.commentController,
-                    maxLines: 10,
-                    minLines: 1,
-                    autofocus: false,
-                    showCursor: true,
-                    scrollPhysics: AlwaysScrollableScrollPhysics(),
-                    decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.auto,
-                        filled: true,
-                        fillColor: Get.theme.canvasColor,
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(142, 153, 183, 0.4),
-                              width: 1.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(142, 153, 183, 0.4),
-                              width: 1.0),
-                        ),
-                        hintText: "${stctrl.lang["Add Comment"]}",
-                        hintStyle: Get.textTheme.subtitle1),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  controller.submitComment(controller.myCourseDetails.value.id,
-                      controller.commentController.value.text);
-                },
-                child: Container(
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                      color: Get.theme.primaryColor, shape: BoxShape.circle),
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 2.0),
-                    child: Transform.rotate(
-                      angle: math.pi / 4,
-                      child: Icon(
-                        FontAwesomeIcons.locationArrow,
-                        color: Colors.white,
-                        size: 15,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget questionsAnswerWidget(MyCourseController controller) {
+  //   return extend.ExtendedVisibilityDetector(
+  //     uniqueKey: const Key('Tab3'),
+  //     child: Scaffold(
+  //       body: Column(
+  //         children: [
+  //           Expanded(
+  //             child: ListView.builder(
+  //               shrinkWrap: true,
+  //               itemCount: controller.myCourseDetails.value.comments.length,
+  //               physics: NeverScrollableScrollPhysics(),
+  //               itemBuilder: (BuildContext context, int index) {
+  //                 return Padding(
+  //                   padding: const EdgeInsets.symmetric(
+  //                       vertical: 10.0, horizontal: 20.0),
+  //                   child: Column(
+  //                     crossAxisAlignment: CrossAxisAlignment.center,
+  //                     children: [
+  //                       Row(
+  //                         crossAxisAlignment: CrossAxisAlignment.start,
+  //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                         children: [
+  //                           ClipOval(
+  //                             child: OctoImage(
+  //                               fit: BoxFit.cover,
+  //                               height: 40,
+  //                               width: 40,
+  //                               image: controller.myCourseDetails.value
+  //                                       .comments[index].user.image
+  //                                       .contains('public/')
+  //                                   ? NetworkImage(
+  //                                       '$rootUrl/${controller.myCourseDetails.value.comments[index].user.image}')
+  //                                   : NetworkImage(controller.myCourseDetails
+  //                                       .value.comments[index].user.image),
+  //                               placeholderBuilder: OctoPlaceholder.blurHash(
+  //                                 'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+  //                               ),
+  //                             ),
+  //                           ),
+  //                           SizedBox(
+  //                             width: 10,
+  //                           ),
+  //                           Expanded(
+  //                             child: Column(
+  //                               crossAxisAlignment: CrossAxisAlignment.start,
+  //                               children: [
+  //                                 Padding(
+  //                                   padding: const EdgeInsets.only(top: 10.0),
+  //                                   child: Row(
+  //                                     children: [
+  //                                       Text(
+  //                                         controller.myCourseDetails.value
+  //                                             .comments[index].user.name
+  //                                             .toString(),
+  //                                         style: Get.textTheme.subtitle1,
+  //                                       ),
+  //                                       Expanded(child: Container()),
+  //                                       Padding(
+  //                                         padding:
+  //                                             const EdgeInsets.only(top: 4.0),
+  //                                         child: Text(
+  //                                           controller.myCourseDetails.value
+  //                                               .comments[index].commentDate
+  //                                               .toString(),
+  //                                           style: Get.textTheme.subtitle2,
+  //                                         ),
+  //                                       ),
+  //                                     ],
+  //                                   ),
+  //                                 ),
+  //                                 Padding(
+  //                                   padding: const EdgeInsets.only(top: 4.0),
+  //                                   child: Text(
+  //                                     controller.myCourseDetails.value
+  //                                         .comments[index].comment
+  //                                         .toString(),
+  //                                     style: Get.textTheme.subtitle2,
+  //                                   ),
+  //                                 ),
+  //                               ],
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                       Divider(),
+  //                     ],
+  //                   ),
+  //                 );
+  //               },
+  //             ),
+  //           ),
+  //           SizedBox(
+  //             height: 50,
+  //           )
+  //         ],
+  //       ),
+  //       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+  //       floatingActionButton: Container(
+  //         decoration: BoxDecoration(
+  //           color: Get.theme.cardColor,
+  //           shape: BoxShape.rectangle,
+  //           borderRadius: BorderRadius.only(
+  //               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+  //         ),
+  //         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.start,
+  //           children: [
+  //             Container(
+  //               height: 40,
+  //               width: 40,
+  //               child: ClipOval(
+  //                 child: OctoImage(
+  //                   fit: BoxFit.cover,
+  //                   height: 40,
+  //                   width: 40,
+  //                   image: controller.dashboardController.profileData.image
+  //                           .contains('public')
+  //                       ? NetworkImage(
+  //                           '$rootUrl/${controller.dashboardController.profileData.image ?? ""}')
+  //                       : NetworkImage(
+  //                           '$rootUrl/${controller.dashboardController.profileData.image ?? ""}'),
+  //                   placeholderBuilder: OctoPlaceholder.blurHash(
+  //                     'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //             SizedBox(
+  //               width: 10,
+  //             ),
+  //             Expanded(
+  //               child: Container(
+  //                 width: percentageWidth * 50,
+  //                 constraints: BoxConstraints(maxHeight: percentageWidth * 15),
+  //                 decoration: BoxDecoration(
+  //                   color: Color(0xffF2F6FF),
+  //                   borderRadius: BorderRadius.circular(5),
+  //                 ),
+  //                 padding: EdgeInsets.zero,
+  //                 child: TextField(
+  //                   controller: controller.commentController,
+  //                   maxLines: 10,
+  //                   minLines: 1,
+  //                   autofocus: false,
+  //                   showCursor: true,
+  //                   scrollPhysics: AlwaysScrollableScrollPhysics(),
+  //                   decoration: InputDecoration(
+  //                       floatingLabelBehavior: FloatingLabelBehavior.auto,
+  //                       filled: true,
+  //                       fillColor: Get.theme.canvasColor,
+  //                       contentPadding:
+  //                           EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+  //                       enabledBorder: OutlineInputBorder(
+  //                         borderRadius: BorderRadius.circular(5),
+  //                         borderSide: BorderSide(
+  //                             color: Color.fromRGBO(142, 153, 183, 0.4),
+  //                             width: 1.0),
+  //                       ),
+  //                       focusedBorder: OutlineInputBorder(
+  //                         borderRadius: BorderRadius.circular(5),
+  //                         borderSide: BorderSide(
+  //                             color: Color.fromRGBO(142, 153, 183, 0.4),
+  //                             width: 1.0),
+  //                       ),
+  //                       hintText: "${stctrl.lang["Add Comment"]}",
+  //                       hintStyle: Get.textTheme.subtitle1),
+  //                 ),
+  //               ),
+  //             ),
+  //             SizedBox(
+  //               width: 10,
+  //             ),
+  //             InkWell(
+  //               onTap: () {
+  //                 controller.submitComment(controller.myCourseDetails.value.id,
+  //                     controller.commentController.value.text);
+  //               },
+  //               child: Container(
+  //                 width: 35,
+  //                 height: 35,
+  //                 decoration: BoxDecoration(
+  //                     color: Get.theme.primaryColor, shape: BoxShape.circle),
+  //                 child: Padding(
+  //                   padding: const EdgeInsets.only(right: 2.0),
+  //                   child: Transform.rotate(
+  //                     angle: math.pi / 4,
+  //                     child: Icon(
+  //                       FontAwesomeIcons.locationArrow,
+  //                       color: Colors.white,
+  //                       size: 15,
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //             SizedBox(
+  //               width: 10,
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   showDownloadAlertDialog(BuildContext context, String title, String fileUrl,
       DownloadController downloadController) {

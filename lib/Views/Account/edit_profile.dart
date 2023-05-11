@@ -78,68 +78,69 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 20,
                       ),
-                      Center(
-                        child: controller.selectedImagePath.value == ""
-                            ? ClipRRect(
-                                clipBehavior: Clip.antiAlias,
-                                borderRadius: BorderRadius.circular(100),
-                                child: CircleAvatar(
-                                  radius: 50,
-                                  backgroundColor: Colors.grey,
-                                  child: FancyShimmerImage(
-                                    imageUrl: controller.userImage.value
-                                            .contains('public/')
-                                        ? "$rootUrl/${controller.userImage.value}"
-                                        : "${controller.userImage.value}",
-                                    boxFit: BoxFit.cover,
-                                    errorWidget: Image.asset(
-                                      'assets/images/profile.png',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                width: 100.0,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: Colors.black, width: 0.5),
-                                  image: DecorationImage(
-                                    image: FileImage(File(
-                                        controller.selectedImagePath.value)),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Center(
-                        child: SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: GestureDetector(
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 32,
-                              decoration: BoxDecoration(
-                                  color: Color(0xff303B58),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Text(
-                                "${stctrl.lang["Choose Image"]}",
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white),
-                              ),
-                            ),
-                            onTap: () {
-                              controller.getImage();
-                            },
-                          ),
-                        ),
-                      ),
+                      //// THis code making error on approval
+                      // Center(
+                      //   child: controller.selectedImagePath.value == ""
+                      //       ? ClipRRect(
+                      //           clipBehavior: Clip.antiAlias,
+                      //           borderRadius: BorderRadius.circular(100),
+                      //           child: CircleAvatar(
+                      //             radius: 50,
+                      //             backgroundColor: Colors.grey,
+                      //             child: FancyShimmerImage(
+                      //               imageUrl: controller.userImage.value
+                      //                       .contains('public/')
+                      //                   ? "$rootUrl/${controller.userImage.value}"
+                      //                   : "${controller.userImage.value}",
+                      //               boxFit: BoxFit.cover,
+                      //               errorWidget: Image.asset(
+                      //                 'assets/images/profile.png',
+                      //                 color: Colors.white,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         )
+                      //       : Container(
+                      //           width: 100.0,
+                      //           height: 100.0,
+                      //           decoration: BoxDecoration(
+                      //             shape: BoxShape.circle,
+                      //             border: Border.all(
+                      //                 color: Colors.black, width: 0.5),
+                      //             image: DecorationImage(
+                      //               image: FileImage(File(
+                      //                   controller.selectedImagePath.value)),
+                      //               fit: BoxFit.cover,
+                      //             ),
+                      //           ),
+                      //         ),
+                      // ),
+                      // SizedBox(
+                      //   height: 20,
+                      // ),
+                      // Center(
+                      //   child: SizedBox(
+                      //     height: 50,
+                      //     width: MediaQuery.of(context).size.width * 0.4,
+                      //     child: GestureDetector(
+                      //       child: Container(
+                      //         alignment: Alignment.center,
+                      //         height: 32,
+                      //         decoration: BoxDecoration(
+                      //             color: Color(0xff303B58),
+                      //             borderRadius: BorderRadius.circular(5)),
+                      //         child: Text(
+                      //           "${stctrl.lang["Choose Image"]}",
+                      //           style: TextStyle(
+                      //               fontSize: 12, color: Colors.white),
+                      //         ),
+                      //       ),
+                      //       onTap: () {
+                      //         controller.getImage();
+                      //       },
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 20,
                       ),
@@ -224,10 +225,10 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "${stctrl.lang["Country"]}",
-                        style: Get.textTheme.subtitle1,
-                      ),
+                      // Text(
+                      //   "${stctrl.lang["Country"]}",
+                      //   style: Get.textTheme.subtitle1,
+                      // ),
                       SizedBox(
                         height: 5,
                       ),

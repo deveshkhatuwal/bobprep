@@ -10,7 +10,7 @@ class MyCourseDetailsTabController extends GetxController
   final List<Tab> myTabs = <Tab>[
     Tab(text: "${stctrl.lang["Curriculum"]}"),
     Tab(text: "${stctrl.lang["Files"]}"),
-    Tab(text: "${stctrl.lang["Q/A"]}"),
+    // Tab(text: "${stctrl.lang["Q/A"]}"),
   ];
 
   TabController controller;
