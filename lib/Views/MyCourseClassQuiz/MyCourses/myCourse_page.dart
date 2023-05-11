@@ -294,122 +294,124 @@ class _MyCoursePageState extends State<MyCoursePage> {
                                       margin: EdgeInsets.only(
                                         bottom: 14.72,
                                       ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5)),
-                                            child: Container(
-                                                width: 174,
-                                                height: 90,
-                                                child: OctoImage(
-                                                  image: NetworkImage(
-                                                      "$rootUrl/${courseAndClassTabController.myCoursesSearch[index].image}"),
-                                                  placeholderBuilder:
-                                                      OctoPlaceholder.blurHash(
-                                                    'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
-                                                  ),
-                                                  fit: BoxFit.fitWidth,
-                                                  errorBuilder: (BuildContext
-                                                          context,
-                                                      Object exception,
-                                                      StackTrace stackTrace) {
-                                                    return Image.asset(
-                                                        'images/fcimg.png');
-                                                  },
-                                                )),
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.only(
-                                              top: 12.35,
-                                              left: 12,
-                                              right: 30,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                courseTitle(
-                                                    courseAndClassTabController
-                                                                .myCoursesSearch[
-                                                                    index]
-                                                                .title[
-                                                            '${stctrl.code.value}'] ??
-                                                        "${courseAndClassTabController.myCoursesSearch[index].title['en']}"),
-                                                courseTPublisher(
-                                                    courseAndClassTabController
-                                                        .myCoursesSearch[index]
-                                                        .user
-                                                        .name),
-                                              ],
-                                            ),
-                                          ),
-                                          courseAndClassTabController
-                                                      .myCoursesSearch[index]
-                                                      .totalCompletePercentage ==
-                                                  null
-                                              ? Container()
-                                              : Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Divider(),
-                                                    courseAndClassTabController
-                                                                .myCoursesSearch[
-                                                                    index]
-                                                                .totalCompletePercentage ==
-                                                            null
-                                                        ? Container()
-                                                        : Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        10),
-                                                            child:
-                                                                LinearPercentIndicator(
-                                                              lineHeight: 14.0,
-                                                              percent: courseAndClassTabController
-                                                                      .myCoursesSearch[
-                                                                          index]
-                                                                      .totalCompletePercentage /
-                                                                  100,
-                                                              backgroundColor:
-                                                                  Color(
-                                                                      0xffF2F6FF),
-                                                              progressColor:
-                                                                  AppStyles
-                                                                      .appThemeColor,
-                                                            ),
-                                                          ),
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Text(
-                                                        "${courseAndClassTabController.myCoursesSearch[index].totalCompletePercentage}% " +
-                                                            "${stctrl.lang["Complete"]}",
-                                                        style: Get
-                                                            .theme
-                                                            .textTheme
-                                                            .subtitle2,
-                                                      ),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5)),
+                                              child: Container(
+                                                  width: 174,
+                                                  height: 90,
+                                                  child: OctoImage(
+                                                    image: NetworkImage(
+                                                        "$rootUrl/${courseAndClassTabController.myCoursesSearch[index].image}"),
+                                                    placeholderBuilder:
+                                                        OctoPlaceholder.blurHash(
+                                                      'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
                                                     ),
-                                                  ],
-                                                ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                        ],
+                                                    fit: BoxFit.fitWidth,
+                                                    errorBuilder: (BuildContext
+                                                            context,
+                                                        Object exception,
+                                                        StackTrace stackTrace) {
+                                                      return Image.asset(
+                                                          'images/fcimg.png');
+                                                    },
+                                                  )),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                top: 12.35,
+                                                left: 12,
+                                                right: 30,
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  courseTitle(
+                                                      courseAndClassTabController
+                                                                  .myCoursesSearch[
+                                                                      index]
+                                                                  .title[
+                                                              '${stctrl.code.value}'] ??
+                                                          "${courseAndClassTabController.myCoursesSearch[index].title['en']}"),
+                                                  courseTPublisher(
+                                                      courseAndClassTabController
+                                                          .myCoursesSearch[index]
+                                                          .user
+                                                          .name),
+                                                ],
+                                              ),
+                                            ),
+                                            courseAndClassTabController
+                                                        .myCoursesSearch[index]
+                                                        .totalCompletePercentage ==
+                                                    null
+                                                ? Container()
+                                                : Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Divider(),
+                                                      courseAndClassTabController
+                                                                  .myCoursesSearch[
+                                                                      index]
+                                                                  .totalCompletePercentage ==
+                                                              null
+                                                          ? Container()
+                                                          : Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          10),
+                                                              child:
+                                                                  LinearPercentIndicator(
+                                                                lineHeight: 14.0,
+                                                                percent: courseAndClassTabController
+                                                                        .myCoursesSearch[
+                                                                            index]
+                                                                        .totalCompletePercentage /
+                                                                    100,
+                                                                backgroundColor:
+                                                                    Color(
+                                                                        0xffF2F6FF),
+                                                                progressColor:
+                                                                    AppStyles
+                                                                        .appThemeColor,
+                                                              ),
+                                                            ),
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.symmetric(
+                                                                vertical: 8),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                          "${courseAndClassTabController.myCoursesSearch[index].totalCompletePercentage}% " +
+                                                              "${stctrl.lang["Complete"]}",
+                                                          style: Get
+                                                              .theme
+                                                              .textTheme
+                                                              .subtitle2,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     onTap: () async {
