@@ -150,7 +150,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       ];
     }
     return [
-      controller.loggedIn.value ? HomePage() : SignInPage(),
+      HomePage(),
       controller.loggedIn.value ? CartPage() : SignInPage(),
       controller.loggedIn.value ? CourseAndClass() : SignInPage(),
       controller.loggedIn.value ? HomePage() : SignInPage(),
@@ -488,7 +488,8 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 ),
 
-                stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? SizedBox(): GestureDetector(
+                // stctrl.dashboardController.profileData.email == 'bobprep@gmail.com' ? SizedBox():
+                GestureDetector(
                   onTap: () {
                     Get.back();
                     Get.to(() => SettingsPage());

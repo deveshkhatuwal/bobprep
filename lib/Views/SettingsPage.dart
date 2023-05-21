@@ -130,92 +130,92 @@ class _SettingsPageState extends State<SettingsPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              editProfileController.dashboardController.loggedIn.value
-                  ? ListTile(
-                      onTap: () async {
-                        Get.bottomSheet(Obx(() {
-                          return Material(
-                            child: Container(
-                              height: Get.height * 0.4,
-                              padding: EdgeInsets.symmetric(horizontal: 30),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 30,
-                                  ),
-                                  Container(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        "${stctrl.lang["Change Language"]}",
-                                        style: Get.textTheme.subtitle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      color: Colors.grey.withOpacity(0.2),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                    ),
-                                    child: DropdownButtonHideUnderline(
-                                      child: ButtonTheme(
-                                        alignedDropdown: true,
-                                        child: DropdownButton(
-                                          elevation: 1,
-                                          isExpanded: true,
-                                          underline: Container(),
-                                          items: stctrl.languages.map((item) {
-                                            return DropdownMenuItem<Language>(
-                                              value: item,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0),
-                                                child: Text(
-                                                    item.native.toString()),
-                                              ),
-                                            );
-                                          }).toList(),
-                                          onChanged: (Language value) {
-                                            stctrl.selectedLanguage.value =
-                                                value;
-                                          },
-                                          value: stctrl.selectedLanguage.value,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 30,
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      await stctrl.setLanguage(
-                                          langCode: stctrl
-                                              .selectedLanguage.value.code);
-                                    },
-                                    child: Text(
-                                      "${stctrl.lang["Confirm"]}",
-                                      style: Get.textTheme.subtitle2
-                                          .copyWith(color: Colors.white),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }));
-                      },
-                      leading: Icon(Icons.language),
-                      title: Text("${stctrl.lang["Language"]}"),
-                    )
-                  : SizedBox.shrink(),
-              ListTile(
+              // editProfileController.dashboardController.loggedIn.value
+              //     ? ListTile(
+              //         onTap: () async {
+              //           Get.bottomSheet(Obx(() {
+              //             return Material(
+              //               child: Container(
+              //                 height: Get.height * 0.4,
+              //                 padding: EdgeInsets.symmetric(horizontal: 30),
+              //                 child: Column(
+              //                   mainAxisAlignment: MainAxisAlignment.start,
+              //                   crossAxisAlignment: CrossAxisAlignment.center,
+              //                   children: [
+              //                     SizedBox(
+              //                       height: 30,
+              //                     ),
+              //                     Container(
+              //                         alignment: Alignment.centerLeft,
+              //                         child: Text(
+              //                           "${stctrl.lang["Change Language"]}",
+              //                           style: Get.textTheme.subtitle2,
+              //                           textAlign: TextAlign.center,
+              //                         )),
+              //                     SizedBox(
+              //                       height: 15,
+              //                     ),
+              //                     Container(
+              //                       decoration: BoxDecoration(
+              //                         shape: BoxShape.rectangle,
+              //                         color: Colors.grey.withOpacity(0.2),
+              //                         borderRadius:
+              //                             BorderRadius.all(Radius.circular(5)),
+              //                       ),
+              //                       child: DropdownButtonHideUnderline(
+              //                         child: ButtonTheme(
+              //                           alignedDropdown: true,
+              //                           child: DropdownButton(
+              //                             elevation: 1,
+              //                             isExpanded: true,
+              //                             underline: Container(),
+              //                             items: stctrl.languages.map((item) {
+              //                               return DropdownMenuItem<Language>(
+              //                                 value: item,
+              //                                 child: Padding(
+              //                                   padding: const EdgeInsets.only(
+              //                                       left: 8.0),
+              //                                   child: Text(
+              //                                       item.native.toString()),
+              //                                 ),
+              //                               );
+              //                             }).toList(),
+              //                             onChanged: (Language value) {
+              //                               stctrl.selectedLanguage.value =
+              //                                   value;
+              //                             },
+              //                             value: stctrl.selectedLanguage.value,
+              //                           ),
+              //                         ),
+              //                       ),
+              //                     ),
+              //                     SizedBox(
+              //                       height: 30,
+              //                     ),
+              //                     ElevatedButton(
+              //                       onPressed: () async {
+              //                         await stctrl.setLanguage(
+              //                             langCode: stctrl
+              //                                 .selectedLanguage.value.code);
+              //                       },
+              //                       child: Text(
+              //                         "${stctrl.lang["Confirm"]}",
+              //                         style: Get.textTheme.subtitle2
+              //                             .copyWith(color: Colors.white),
+              //                         textAlign: TextAlign.center,
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //             );
+              //           }));
+              //         },
+              //         // leading: Icon(Icons.language),
+              //         // title: Text("${stctrl.lang["Language"]}"),
+              //       )
+              //     : SizedBox.shrink(),
+             ListTile(
                 onTap: () async {
                   final _url = privacyPolicyLink;
                   // ignore: deprecated_member_use
@@ -227,19 +227,19 @@ class _SettingsPageState extends State<SettingsPage> {
                 leading: Icon(Icons.vpn_key_outlined),
                 title: Text("${stctrl.lang["Privacy Policy"]}"),
               ),
-              ListTile(
-                onTap: () async {
-                  final _url =
-                      Platform.isIOS ? rateAppLinkiOS : rateAppLinkAndroid;
-                  // ignore: deprecated_member_use
-                  await canLaunch(_url)
-                      // ignore: deprecated_member_use
-                      ? await launch(_url)
-                      : throw 'Could not launch $_url';
-                },
-                leading: Icon(Icons.star),
-                title: Text("${stctrl.lang["Rate our App"]}"),
-              ),
+              // ListTile(
+              //   onTap: () async {
+              //     final _url =
+              //         Platform.isIOS ? rateAppLinkiOS : rateAppLinkAndroid;
+              //     // ignore: deprecated_member_use
+              //     await canLaunch(_url)
+              //         // ignore: deprecated_member_use
+              //         ? await launch(_url)
+              //         : throw 'Could not launch $_url';
+              //   },
+              //   leading: Icon(Icons.star),
+              //   title: Text("${stctrl.lang["Rate our App"]}"),
+              // ),
               ListTile(
                 onTap: () async {
                   final _url = contactUsLink;
@@ -252,13 +252,13 @@ class _SettingsPageState extends State<SettingsPage> {
                 leading: Icon(Icons.mail),
                 title: Text("${stctrl.lang['Contact Us']}"),
               ),
-              ListTile(
+              editProfileController.dashboardController.loggedIn.value ?ListTile(
                 onTap: () async {
                   _deleteAccountDialog(context);
                 },
                 leading: Icon(Icons.warning_amber),
                 title: Text("${stctrl.lang["Delete account"]}"),
-              ),
+              ): SizedBox(),
             ],
           ),
         ),

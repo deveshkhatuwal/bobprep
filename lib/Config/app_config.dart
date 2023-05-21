@@ -56,10 +56,10 @@ final String razorPaySecret = 'Fg3w0gZ7YITgjVoms98fekTf';
 const PAYTM_HOST_URL = "http://localhost:3000";
 
 //** Settings Page Links
-final String privacyPolicyLink = "http://lmsapp.uxseven.com/privacy";
+final String privacyPolicyLink = "https://bobprep.com/privacy";
 final String rateAppLinkAndroid =    "https://play.google.com/store/apps/details?id=com.infix.lms";
 final String rateAppLinkiOS = "https://app.apple.com/id123214";
-final String contactUsLink = "http://lmsapp.uxseven.com/contact-us";
+final String contactUsLink = "https://bobprep.com/contact-us";
 
 const PAYMENT_URL = "$PAYTM_HOST_URL/payment";
 const STATUS_LOADING = "PAYMENT_LOADING";
