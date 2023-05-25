@@ -254,7 +254,7 @@ class HomePage extends GetView<HomeController> {
                                 if(stctrl.dashboardController.profileData.email == "bobprep@gmail.com"){
 
                                     return SingleItemCardWidget(
-                                      showPricing: true,
+                                      showPricing: false,
                                       image:"$rootUrl/${controller.popularCourseListDemo[index].image}",
                                       title: controller.popularCourseListDemo[index]
                                           .title['${stctrl.code.value}'] ??
@@ -344,7 +344,7 @@ class HomePage extends GetView<HomeController> {
                                 //   );
                                 }
                                 else return SingleItemCardWidget(
-                                    showPricing: true,
+                                    showPricing: false,
                                     image:"$rootUrl/${controller.popularCourseList[index].image}",
                                     title: controller.popularCourseList[index]
                                         .title['${stctrl.code.value}'] ??

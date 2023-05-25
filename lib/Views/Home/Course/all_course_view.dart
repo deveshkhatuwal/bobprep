@@ -157,7 +157,7 @@ class _AllCourseViewState extends State<AllCourseView> {
 
 
                               return SingleItemCardWidget(
-                                showPricing: true,
+                                showPricing: false,
                                 image:
                                 "$rootUrl/${_homeController.popularCourseListDemo[index].image}",
                                 title: _homeController
